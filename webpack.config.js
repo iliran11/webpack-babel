@@ -1,4 +1,3 @@
-// webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
@@ -7,16 +6,20 @@ module.exports = {
         path: 'dist'
     },
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    presets: ['es2015']
-                }
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    ['es2015', {
+                        modules: false
+                    }]
+                ]
             }
-        ]
+        }]
     },
-    plugins: [new HtmlWebpackPlugin({title: 'Tree-shaking'})]
+    plugins: [new HtmlWebpackPlugin({
+        title: 'Tree-shaking'
+    })]
 };
